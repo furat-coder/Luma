@@ -1,0 +1,670 @@
+{
+    "schemaVersion": "1",
+    "targetFamily": "sql",
+    "target": "postgres",
+    "profileHash": "3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2",
+    "roots": {
+        "Account": {
+            "model": "Account",
+            "namespace": "public"
+        },
+        "Session": {
+            "model": "Session",
+            "namespace": "public"
+        },
+        "VerificationCode": {
+            "model": "VerificationCode",
+            "namespace": "public"
+        }
+    },
+    "domain": {
+        "namespaces": {
+            "public": {
+                "models": {
+                    "Account": {
+                        "fields": {
+                            "bio": {
+                                "nullable": true,
+                                "type": {
+                                    "codecId": "pg/text@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "createdAt": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "displayName": {
+                                "nullable": true,
+                                "type": {
+                                    "codecId": "pg/text@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "email": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/text@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "id": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/int4@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "isActive": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/bool@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "isVerified": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/bool@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "passwordHash": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/text@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "profileImage": {
+                                "nullable": true,
+                                "type": {
+                                    "codecId": "pg/text@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "updatedAt": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "username": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/text@1",
+                                    "kind": "scalar"
+                                }
+                            }
+                        },
+                        "relations": {
+                            "sessions": {
+                                "cardinality": "1:N",
+                                "on": {
+                                    "localFields": [
+                                        "id"
+                                    ],
+                                    "targetFields": [
+                                        "accountId"
+                                    ]
+                                },
+                                "to": {
+                                    "model": "Session",
+                                    "namespace": "public"
+                                }
+                            },
+                            "verificationCodes": {
+                                "cardinality": "1:N",
+                                "on": {
+                                    "localFields": [
+                                        "id"
+                                    ],
+                                    "targetFields": [
+                                        "accountId"
+                                    ]
+                                },
+                                "to": {
+                                    "model": "VerificationCode",
+                                    "namespace": "public"
+                                }
+                            }
+                        },
+                        "storage": {
+                            "fields": {
+                                "bio": {
+                                    "column": "bio"
+                                },
+                                "createdAt": {
+                                    "column": "createdAt"
+                                },
+                                "displayName": {
+                                    "column": "displayName"
+                                },
+                                "email": {
+                                    "column": "email"
+                                },
+                                "id": {
+                                    "column": "id"
+                                },
+                                "isActive": {
+                                    "column": "isActive"
+                                },
+                                "isVerified": {
+                                    "column": "isVerified"
+                                },
+                                "passwordHash": {
+                                    "column": "passwordHash"
+                                },
+                                "profileImage": {
+                                    "column": "profileImage"
+                                },
+                                "updatedAt": {
+                                    "column": "updatedAt"
+                                },
+                                "username": {
+                                    "column": "username"
+                                }
+                            },
+                            "namespaceId": "public",
+                            "table": "Account"
+                        }
+                    },
+                    "Session": {
+                        "fields": {
+                            "accountId": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/int4@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "createdAt": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "expiresAt": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "id": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/int4@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "token": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/text@1",
+                                    "kind": "scalar"
+                                }
+                            }
+                        },
+                        "relations": {
+                            "account": {
+                                "cardinality": "N:1",
+                                "nullable": false,
+                                "on": {
+                                    "localFields": [
+                                        "accountId"
+                                    ],
+                                    "targetFields": [
+                                        "id"
+                                    ]
+                                },
+                                "to": {
+                                    "model": "Account",
+                                    "namespace": "public"
+                                }
+                            }
+                        },
+                        "storage": {
+                            "fields": {
+                                "accountId": {
+                                    "column": "accountId"
+                                },
+                                "createdAt": {
+                                    "column": "createdAt"
+                                },
+                                "expiresAt": {
+                                    "column": "expiresAt"
+                                },
+                                "id": {
+                                    "column": "id"
+                                },
+                                "token": {
+                                    "column": "token"
+                                }
+                            },
+                            "namespaceId": "public",
+                            "table": "Session"
+                        }
+                    },
+                    "VerificationCode": {
+                        "fields": {
+                            "accountId": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/int4@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "code": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/text@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "createdAt": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "expiresAt": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "id": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/int4@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "type": {
+                                "nullable": false,
+                                "type": {
+                                    "codecId": "pg/text@1",
+                                    "kind": "scalar"
+                                }
+                            },
+                            "usedAt": {
+                                "nullable": true,
+                                "type": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "kind": "scalar"
+                                }
+                            }
+                        },
+                        "relations": {
+                            "account": {
+                                "cardinality": "N:1",
+                                "nullable": false,
+                                "on": {
+                                    "localFields": [
+                                        "accountId"
+                                    ],
+                                    "targetFields": [
+                                        "id"
+                                    ]
+                                },
+                                "to": {
+                                    "model": "Account",
+                                    "namespace": "public"
+                                }
+                            }
+                        },
+                        "storage": {
+                            "fields": {
+                                "accountId": {
+                                    "column": "accountId"
+                                },
+                                "code": {
+                                    "column": "code"
+                                },
+                                "createdAt": {
+                                    "column": "createdAt"
+                                },
+                                "expiresAt": {
+                                    "column": "expiresAt"
+                                },
+                                "id": {
+                                    "column": "id"
+                                },
+                                "type": {
+                                    "column": "type"
+                                },
+                                "usedAt": {
+                                    "column": "usedAt"
+                                }
+                            },
+                            "namespaceId": "public",
+                            "table": "VerificationCode"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "storage": {
+        "namespaces": {
+            "public": {
+                "entries": {
+                    "table": {
+                        "Account": {
+                            "columns": {
+                                "bio": {
+                                    "codecId": "pg/text@1",
+                                    "nativeType": "text",
+                                    "nullable": true
+                                },
+                                "createdAt": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "default": {
+                                        "expression": "now()",
+                                        "kind": "function"
+                                    },
+                                    "nativeType": "timestamptz",
+                                    "nullable": false
+                                },
+                                "displayName": {
+                                    "codecId": "pg/text@1",
+                                    "nativeType": "text",
+                                    "nullable": true
+                                },
+                                "email": {
+                                    "codecId": "pg/text@1",
+                                    "nativeType": "text",
+                                    "nullable": false
+                                },
+                                "id": {
+                                    "codecId": "pg/int4@1",
+                                    "default": {
+                                        "expression": "autoincrement()",
+                                        "kind": "function"
+                                    },
+                                    "nativeType": "int4",
+                                    "nullable": false
+                                },
+                                "isActive": {
+                                    "codecId": "pg/bool@1",
+                                    "default": {
+                                        "kind": "literal",
+                                        "value": true
+                                    },
+                                    "nativeType": "bool",
+                                    "nullable": false
+                                },
+                                "isVerified": {
+                                    "codecId": "pg/bool@1",
+                                    "default": {
+                                        "kind": "literal",
+                                        "value": false
+                                    },
+                                    "nativeType": "bool",
+                                    "nullable": false
+                                },
+                                "passwordHash": {
+                                    "codecId": "pg/text@1",
+                                    "nativeType": "text",
+                                    "nullable": false
+                                },
+                                "profileImage": {
+                                    "codecId": "pg/text@1",
+                                    "nativeType": "text",
+                                    "nullable": true
+                                },
+                                "updatedAt": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "nativeType": "timestamptz",
+                                    "nullable": false
+                                },
+                                "username": {
+                                    "codecId": "pg/text@1",
+                                    "nativeType": "text",
+                                    "nullable": false
+                                }
+                            },
+                            "foreignKeys": [],
+                            "indexes": [],
+                            "primaryKey": {
+                                "columns": [
+                                    "id"
+                                ]
+                            },
+                            "uniques": [
+                                {
+                                    "columns": [
+                                        "email"
+                                    ]
+                                },
+                                {
+                                    "columns": [
+                                        "username"
+                                    ]
+                                }
+                            ]
+                        },
+                        "Session": {
+                            "columns": {
+                                "accountId": {
+                                    "codecId": "pg/int4@1",
+                                    "nativeType": "int4",
+                                    "nullable": false
+                                },
+                                "createdAt": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "default": {
+                                        "expression": "now()",
+                                        "kind": "function"
+                                    },
+                                    "nativeType": "timestamptz",
+                                    "nullable": false
+                                },
+                                "expiresAt": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "nativeType": "timestamptz",
+                                    "nullable": false
+                                },
+                                "id": {
+                                    "codecId": "pg/int4@1",
+                                    "default": {
+                                        "expression": "autoincrement()",
+                                        "kind": "function"
+                                    },
+                                    "nativeType": "int4",
+                                    "nullable": false
+                                },
+                                "token": {
+                                    "codecId": "pg/text@1",
+                                    "nativeType": "text",
+                                    "nullable": false
+                                }
+                            },
+                            "foreignKeys": [
+                                {
+                                    "source": {
+                                        "columns": [
+                                            "accountId"
+                                        ],
+                                        "namespaceId": "public",
+                                        "tableName": "Session"
+                                    },
+                                    "target": {
+                                        "columns": [
+                                            "id"
+                                        ],
+                                        "namespaceId": "public",
+                                        "tableName": "Account"
+                                    }
+                                }
+                            ],
+                            "indexes": [
+                                {
+                                    "columns": [
+                                        "accountId"
+                                    ],
+                                    "name": "Session_accountId_idx_cbfb3085",
+                                    "prefix": "Session_accountId_idx",
+                                    "unique": false
+                                }
+                            ],
+                            "primaryKey": {
+                                "columns": [
+                                    "id"
+                                ]
+                            },
+                            "uniques": [
+                                {
+                                    "columns": [
+                                        "token"
+                                    ]
+                                }
+                            ]
+                        },
+                        "VerificationCode": {
+                            "columns": {
+                                "accountId": {
+                                    "codecId": "pg/int4@1",
+                                    "nativeType": "int4",
+                                    "nullable": false
+                                },
+                                "code": {
+                                    "codecId": "pg/text@1",
+                                    "nativeType": "text",
+                                    "nullable": false
+                                },
+                                "createdAt": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "default": {
+                                        "expression": "now()",
+                                        "kind": "function"
+                                    },
+                                    "nativeType": "timestamptz",
+                                    "nullable": false
+                                },
+                                "expiresAt": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "nativeType": "timestamptz",
+                                    "nullable": false
+                                },
+                                "id": {
+                                    "codecId": "pg/int4@1",
+                                    "default": {
+                                        "expression": "autoincrement()",
+                                        "kind": "function"
+                                    },
+                                    "nativeType": "int4",
+                                    "nullable": false
+                                },
+                                "type": {
+                                    "codecId": "pg/text@1",
+                                    "nativeType": "text",
+                                    "nullable": false
+                                },
+                                "usedAt": {
+                                    "codecId": "pg/timestamptz-string@1",
+                                    "nativeType": "timestamptz",
+                                    "nullable": true
+                                }
+                            },
+                            "foreignKeys": [
+                                {
+                                    "source": {
+                                        "columns": [
+                                            "accountId"
+                                        ],
+                                        "namespaceId": "public",
+                                        "tableName": "VerificationCode"
+                                    },
+                                    "target": {
+                                        "columns": [
+                                            "id"
+                                        ],
+                                        "namespaceId": "public",
+                                        "tableName": "Account"
+                                    }
+                                }
+                            ],
+                            "indexes": [
+                                {
+                                    "columns": [
+                                        "accountId"
+                                    ],
+                                    "name": "VerificationCode_accountId_idx_cbfb3085",
+                                    "prefix": "VerificationCode_accountId_idx",
+                                    "unique": false
+                                }
+                            ],
+                            "primaryKey": {
+                                "columns": [
+                                    "id"
+                                ]
+                            },
+                            "uniques": []
+                        }
+                    }
+                },
+                "id": "public",
+                "kind": "postgres-schema"
+            }
+        },
+        "storageHash": "6078ade5f93c1f7a9bb02de0a9a35629cbff465208f0f04fe1b6153d971e3d2d"
+    },
+    "execution": {
+        "executionHash": "0cf4007f57ae2a45c3c2b3ae96274557ae222acb1301a18ea16cb64855fa8ab6",
+        "mutations": {
+            "defaults": [
+                {
+                    "onCreate": {
+                        "id": "timestampNow",
+                        "kind": "generator"
+                    },
+                    "onUpdate": {
+                        "id": "timestampNow",
+                        "kind": "generator"
+                    },
+                    "ref": {
+                        "column": "updatedAt",
+                        "namespace": "public",
+                        "table": "Account"
+                    }
+                }
+            ]
+        }
+    },
+    "capabilities": {
+        "postgres": {
+            "distinctOn": true,
+            "jsonAgg": true,
+            "lateral": true,
+            "limit": true,
+            "orderBy": true,
+            "returning": true
+        },
+        "sql": {
+            "checkConstraint": true,
+            "defaultInInsert": true,
+            "enums": true,
+            "insertOnConflictSkip": true,
+            "insertOnConflictWithoutTarget": true,
+            "lateral": true,
+            "returning": true,
+            "scalarList": true
+        }
+    },
+    "extensions": {},
+    "meta": {},
+    "_generated": {
+        "warning": "⚠️  GENERATED FILE - DO NOT EDIT",
+        "message": "This file is automatically generated by \"prisma contract emit\".",
+        "regenerate": "To regenerate, run: prisma contract emit"
+    }
+}

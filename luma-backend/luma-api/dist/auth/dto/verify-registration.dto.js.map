@@ -1,0 +1,1 @@
+{"version":3,"file":"verify-registration.dto.js","sourceRoot":"","sources":["../../../src/auth/dto/verify-registration.dto.ts"],"names":[],"mappings":";;;;;;;;;AAAA,OAAO,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,EAAE,MAAM,iBAAiB,CAAC;AAE5D,MAAM,OAAO,qBAAqB;IAEhC,KAAK,CAAS;IAId,IAAI,CAAS;CACd;AALC;IADC,OAAO,EAAE;;oDACI;AAId;IAFC,QAAQ,EAAE;IACV,MAAM,CAAC,CAAC,EAAE,CAAC,CAAC;;mDACA"}

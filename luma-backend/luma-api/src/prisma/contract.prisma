@@ -1,0 +1,42 @@
+// use prisma-8
+
+model Account {
+  id             Int                @id @default(autoincrement())
+  email          String             @unique
+  username       String             @unique
+  passwordHash   String
+  displayName    String?
+  bio            String?
+  profileImage   String?
+  isVerified     Boolean            @default(false)
+  isActive       Boolean            @default(true)
+
+  sessions       Session[]
+  verificationCodes VerificationCode[]
+
+  createdAt      TimestamptzString  @default(now())
+  updatedAt      temporal.updatedAtString()
+}
+
+model Session {
+  id             Int                @id @default(autoincrement())
+  token          String             @unique
+  account        Account            @relation(fields: [accountId], references: [id])
+  accountId      Int
+
+  expiresAt      TimestamptzString
+  createdAt      TimestamptzString  @default(now())
+}
+
+model VerificationCode {
+  id             Int                @id @default(autoincrement())
+  code           String
+  type           String
+  account        Account            @relation(fields: [accountId], references: [id])
+  accountId      Int
+
+  expiresAt      TimestamptzString
+  usedAt         TimestamptzString?
+
+  createdAt      TimestamptzString  @default(now())
+}
